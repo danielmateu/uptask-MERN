@@ -2,3 +2,4 @@
 
 - nodemon
 - mongoose
+- dotEnv
