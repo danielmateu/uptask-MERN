@@ -4,3 +4,4 @@
 - mongoose
 - dotEnv
 - bcrypt
+- jsonwebtoken
