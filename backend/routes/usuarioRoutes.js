@@ -1,5 +1,6 @@
 import express from 'express';
-import { autenticar, confirmar, registrar, olvidePassword, comprobarToken, nuevoPassword } from '../controllers/usuarioController.js';
+import { autenticar, confirmar, registrar, olvidePassword, comprobarToken, nuevoPassword, perfil } from '../controllers/usuarioController.js';
+import checkAuth from '../middleware/checkAuth.js';
 
 
 const router = express.Router();
@@ -14,8 +15,6 @@ router.post('/olvide-password', olvidePassword) //Revalidar token
 
 router.route('/olvide-password/:token').get(comprobarToken).post(nuevoPassword)
 
-
-
-
+router.get('/perfil', checkAuth, perfil);
 
 export default  router;
