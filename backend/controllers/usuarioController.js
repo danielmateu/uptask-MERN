@@ -24,7 +24,12 @@ const registrar = async (req, res, next) => {
     }
 }
 
+const autenticar = async (req, res, next) => {
+
+}
+
 
 export { 
-    registrar
+    registrar,
+    autenticar
 }
