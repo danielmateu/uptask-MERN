@@ -1,10 +1,11 @@
 
+import express from 'express';
+import conectarDB from './config/db.js';
 
-const express = require('express');
 
 const app = express();
 
-console.log('desde index.js')
+conectarDB();
 
 app.listen(4000, () => {
     console.log('Servidor corriendo en puerto 4000')

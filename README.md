@@ -1,3 +1,4 @@
 # Instalaciones
 
 - nodemon
+- mongoose
