@@ -54,7 +54,28 @@ const autenticar = async (req, res, next) => {
         })
     }else{
         const error = new Error('El password es incorrecto');
-        res.status(404).json({msg:error.message})
+        res.status(403).json({msg:error.message})
+        
+    }
+}
+
+const confirmar = async(req,res) => {
+    const {token} = req.params;
+    const usuarioConfirmar = await Usuario.findOne({token});
+
+    if(!usuarioConfirmar){
+        const error = new Error('Token incorrecto');
+        res.status(403).json({msg:error.message})
+    }
+
+    try {
+        usuarioConfirmar.confirmado = true;
+        usuarioConfirmar.token = ''
+        await usuarioConfirmar.save();
+        res.json({msg: 'Usuario confirmado correctamente'})
+        // console.log(usuarioConfirmar)
+    } catch (error) {
+        console.log(error)
     }
 
 }
@@ -62,5 +83,6 @@ const autenticar = async (req, res, next) => {
 
 export { 
     registrar,
-    autenticar
+    autenticar,
+    confirmar
 }
