@@ -1,0 +1,3 @@
+# Instalaciones
+
+- nodemon
