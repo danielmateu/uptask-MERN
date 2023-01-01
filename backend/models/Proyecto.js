@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Usuario from "./Usuario";
+
 
 const proyectosSchema = mongoose.Schema({
     nombre: {
@@ -35,6 +35,6 @@ const proyectosSchema = mongoose.Schema({
     }, { timestamps: true, }
 );
 
-const Proyecto = mongoose.model('Proyecto', proyectosSchema);
+export const Proyecto = mongoose.model('Proyecto', proyectosSchema);
 
-export default Proyecto;
+// export default Proyecto;
