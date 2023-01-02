@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 
 const proyectosSchema = mongoose.Schema({
+
     nombre: {
         type: String,
         trim: true,
@@ -37,4 +38,3 @@ const proyectosSchema = mongoose.Schema({
 
 export const Proyecto = mongoose.model('Proyecto', proyectosSchema);
 
-// export default Proyecto;
