@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { Alerta } from "../components/Alerta"
 
 
 export const Registrar = () => {
@@ -9,13 +10,57 @@ export const Registrar = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [repetirPassword, setRepetirPassword] = useState('');
+    const [alerta, setAlerta] = useState({})
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        if([nombre,email,password,repetirPassword].includes('')){
+            // console.log('Todos los campos son obligatorios')
+            setAlerta({
+                msg: 'Todos los campos son obligatorios',
+                error: true
+            })
+            return;
+        }
+
+        if(password !== repetirPassword){
+            setAlerta({
+                msg: 'Los passwords deben ser iguales',
+                error: true
+            })
+            return;
+        }
+
+        if(password.length < 6){
+            setAlerta({
+                msg: 'El password debe tener al menos 6 carácteres',
+                error: true
+            })
+            return;
+        }
+
+        setAlerta({})
+
+        //Crear usuario en API
+
+        console.log('creando...');
+    }
+
+    const {msg} = alerta;
 
     return (
         <>
-            <h1 className="text-sky-400 text-6xl font-semibold">Crea tu cuenta y administra tus {' '}<span className="text-slate-400">proyectos</span>
+            <h1 className="text-sky-400 text-6xl font-semibold mb-4">Crea tu cuenta y administra tus {' '}<span className="text-slate-400">proyectos</span>
             </h1>
 
-            <form action="" className="my-10 bg-white rounded-lg shadow-md p-10 ">
+            {msg && <Alerta alerta={alerta}/>}
+
+            <form
+                action=""
+                className="my-10 bg-white rounded-lg shadow-md p-10 "
+                onSubmit={handleSubmit}
+            >
                 <div className="my-5">
                     <label htmlFor="nombre" className="text-gray-600 block">Nombre</label>
                     <input
