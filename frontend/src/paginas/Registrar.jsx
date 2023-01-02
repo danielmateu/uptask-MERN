@@ -47,11 +47,18 @@ export const Registrar = () => {
 
         // console.log('creando...');
         try {
-            const respuesta = await axios.post('http://localhost:4000/api/usuarios', {nombre, email, password});
+            const {data} = await axios.post('http://localhost:4000/api/usuarios', {nombre, email, password});
 
-            console.log(respuesta);
+            console.log(data);
+            setAlerta({
+                msg: data.msg,
+                error: false
+            })
         } catch (error) {
-            console.log(error)
+            setAlerta({
+                msg: error.response.data.msg,
+                error: true
+            })
         }
     }
 

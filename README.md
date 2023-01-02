@@ -5,6 +5,7 @@
 - dotEnv
 - bcrypt
 - jsonwebtoken
+- cors
 
 ## Instalaciones Frontend
 
