@@ -115,5 +115,5 @@ export {
     eliminarProyecto,
     agregarColaborador,
     eliminarColaborador,
-    obtenerTareas,
+    // obtenerTareas,
 }
