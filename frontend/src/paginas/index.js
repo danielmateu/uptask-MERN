@@ -1,0 +1,5 @@
+export * from './ConfirmarCuenta'
+export * from './Login'
+export * from './NuevoPasword'
+export * from './OlvidePassword'
+export * from './Registrar'
