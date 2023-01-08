@@ -9,6 +9,8 @@ export const NuevoPasword = () => {
 
     const [tokenValido, setTokenValido] = useState(false)
     const [alerta, setAlerta] = useState('')
+    const [password, setPassword] = useState('')
+    const [passwordModificado, setPasswordModificado] = useState(false)
 
     const params = useParams();
     const { token } = params;
@@ -22,7 +24,7 @@ export const NuevoPasword = () => {
 
             } catch (error) {
                 setAlerta({
-                    msg:error.response.data.msg,
+                    msg: error.response.data.msg,
                     error: true
                 })
             }
@@ -30,7 +32,36 @@ export const NuevoPasword = () => {
         comprobarToken();
     }, [])
 
-    const {msg} = alerta;
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (password.length < 6) {
+            setAlerta({
+                msg: 'El password debe contener al menos 6 caracteres',
+                error: true
+            })
+            return
+        }
+
+        try {
+            const url = `http://localhost:4000/api/usuarios/olvide-password/${token}`
+
+            const { data } = await axios.post(url, { password })
+            setAlerta({
+                msg: data.msg,
+                error: false
+            })
+            setPasswordModificado(true)
+
+        } catch (error) {
+            setAlerta({
+                msg: error.response.data.msg,
+                error: true
+            })
+        }
+    }
+
+    const { msg } = alerta;
 
     return (
         <>
@@ -38,16 +69,27 @@ export const NuevoPasword = () => {
             </h1>
 
             {
-                msg && <Alerta alerta={alerta}/>
+                msg && <Alerta alerta={alerta} />
             }
 
             {
                 tokenValido && (
-                    <form action="" className="my-10 bg-white rounded-lg shadow-md p-10 ">
+                    <form
+                        action=""
+                        className="my-10 bg-white rounded-lg shadow-md p-10 "
+                        onSubmit={handleSubmit}
+                    >
 
                         <div className="my-5">
                             <label htmlFor="password" className="text-gray-600 block">Nuevo password</label>
-                            <input id='password' type="password" placeholder="Escribe tu password" className="w-full mt-3 p-3 rounded-xl" />
+                            <input
+                                id='password'
+                                type="password"
+                                placeholder="Escribe tu password"
+                                className="w-full mt-3 p-3 rounded-xl"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                            />
                         </div>
 
 
@@ -56,9 +98,18 @@ export const NuevoPasword = () => {
                 )
             }
 
-            <nav className="lg:flex lg:justify-between my-10">
+            {passwordModificado && (
                 <Link
                     className="block text-center my-4 text-slate-500 hover:text-slate-600"
+                    to='/'
+                >
+                    Inicia sesión
+                </Link>
+            )}
+
+            {/* <nav className="lg:flex lg:justify-between my-10">
+                <Link
+                    className="block text-center my-4 text-slate-500 hover:text-slate-600 "
                     to='/'
                 >
                     ¿Ya estás registrado? Inicia sesión
@@ -70,7 +121,7 @@ export const NuevoPasword = () => {
                     Olvidé mi Password
                 </Link>
 
-            </nav>
+            </nav> */}
         </>
     )
 }
