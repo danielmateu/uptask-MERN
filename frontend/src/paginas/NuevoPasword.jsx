@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
 import { Link, useParams } from "react-router-dom"
 import { Alerta } from "../components/Alerta"
+import clienteAxios from "../config/clienteAxios"
 
 
 
@@ -18,8 +18,8 @@ export const NuevoPasword = () => {
     useEffect(() => {
         const comprobarToken = async () => {
             try {
-                //TODO mover hacia un cliente axios
-                await axios(`http://localhost:4000/api/usuarios/olvide-password/${token}`);
+                
+                await clienteAxios(`/usuarios/olvide-password/${token}`);
                 setTokenValido(true);
 
             } catch (error) {
@@ -44,9 +44,9 @@ export const NuevoPasword = () => {
         }
 
         try {
-            const url = `http://localhost:4000/api/usuarios/olvide-password/${token}`
+            const url = `/usuarios/olvide-password/${token}`
 
-            const { data } = await axios.post(url, { password })
+            const { data } = await clienteAxios.post(url, { password })
             setAlerta({
                 msg: data.msg,
                 error: false
@@ -107,21 +107,6 @@ export const NuevoPasword = () => {
                 </Link>
             )}
 
-            {/* <nav className="lg:flex lg:justify-between my-10">
-                <Link
-                    className="block text-center my-4 text-slate-500 hover:text-slate-600 "
-                    to='/'
-                >
-                    ¿Ya estás registrado? Inicia sesión
-                </Link>
-                <Link
-                    className="block text-center my-4 text-slate-500 hover:text-slate-600"
-                    to='/olvide-password'
-                >
-                    Olvidé mi Password
-                </Link>
-
-            </nav> */}
         </>
     )
 }

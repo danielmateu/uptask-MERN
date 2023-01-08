@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { Alerta } from "../components/Alerta"
-import axios from 'axios';
+import clienteAxios from "../config/clienteAxios"
+
 
 
 export const Registrar = () => {
@@ -17,7 +18,7 @@ export const Registrar = () => {
         e.preventDefault();
 
         if([nombre,email,password,repetirPassword].includes('')){
-            // console.log('Todos los campos son obligatorios')
+
             setAlerta({
                 msg: 'Todos los campos son obligatorios',
                 error: true
@@ -44,13 +45,10 @@ export const Registrar = () => {
         setAlerta({})
 
         //Crear usuario en API
-
-        // console.log('creando...');
         try {
-            //TODO Mover hacia un cliente axios
-            const {data} = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/usuarios`, {nombre, email, password});
+            
+            const {data} = await clienteAxios.post(`/usuarios`, {nombre, email, password});
 
-            // console.log(data);
             setAlerta({
                 msg: data.msg,
                 error: false

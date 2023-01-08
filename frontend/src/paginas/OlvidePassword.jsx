@@ -1,7 +1,9 @@
-import axios from "axios";
+
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { Alerta } from "../components/Alerta";
+import clienteAxios from "../config/clienteAxios";
+
 
 export const OlvidePassword = () => {
 
@@ -21,15 +23,14 @@ export const OlvidePassword = () => {
         }
 
         try {
-            //TODO Mover hacia un cliente axios
-            const {data} = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/usuarios/olvide-password`, {email});
-            // console.log(data) 
+            const {data} = await clienteAxios.post(`/usuarios/olvide-password`, {email});
+            
             setAlerta({
                 msg: data.msg,
                 error: false
             })
         } catch (error) {
-            // console.log(error.response);
+            
             setAlerta({
                 msg: error.response.data.msg,
                 error: true,
@@ -69,14 +70,6 @@ export const OlvidePassword = () => {
                         onChange={ e => setEmail(e.target.value)}
                     />
                 </div>
-                {/* <div className="my-5">
-                    <label htmlFor="password" className="text-gray-600 block">Password</label>
-                    <input id='password' type="password" placeholder="Password de registro" className="w-full mt-3 p-3 rounded-xl" />
-                </div>
-                <div className="my-5">
-                    <label htmlFor="password2" className="text-gray-600 block">Repite tu Password</label>
-                    <input id='password2' type="password" placeholder="Repite tu Password" className="w-full mt-3 p-3 rounded-xl" />
-                </div> */}
 
                 <input type="submit" value='Enviar instrucciones' className="bg-sky-400 p-4 rounded-xl shadow-md hover:shadow-none transition-all font-semibold text-white hover:cursor-pointer hover:text-gray-500 w-full mb-5"  />
             </form>
