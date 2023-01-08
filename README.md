@@ -6,6 +6,7 @@
 - bcrypt
 - jsonwebtoken
 - cors
+- nodemailer
 
 ## Instalaciones Frontend
 

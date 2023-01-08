@@ -1,6 +1,8 @@
+import { emailRegistro } from "../helpers/emails.js";
 import generarId from "../helpers/generarId.js";
 import generarJWT from "../helpers/generarJWT.js";
 import Usuario from "../models/Usuario.js"
+
 
 const registrar = async (req, res, next) => {
 
@@ -17,6 +19,14 @@ const registrar = async (req, res, next) => {
         const usuario = new Usuario(req.body);
         usuario.token = generarId();
         await usuario.save();
+
+        //Enviar el mail de confirmación
+        // console.log(usuario);
+        emailRegistro({
+            email: usuario.email,
+            nombre: usuario.nombre,
+            token: usuario.token
+        })
 
         res.json({msg : 'Usuario creado correctamente, revisa tu email para confirmar tu cuenta'})
     } catch (error) {
