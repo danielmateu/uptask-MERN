@@ -38,6 +38,7 @@ const AuthProvider = ({ children }) => {
         <AuthContext.Provider
             value={{
                 // hola
+                auth,
                 setAuth,
             }}
         >

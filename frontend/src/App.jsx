@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './context/AuthProvider'
 import { AuthLayout } from './layouts/AuthLayout'
+import { RutaProtegida } from './layouts/RutaProtegida'
 import { ConfirmarCuenta, Login, NuevoPasword, OlvidePassword, Registrar } from './paginas'
+import { Proyectos } from './paginas/Proyectos'
 
 
 // console.log(import.meta.env.VITE_BACKEND_URL)
@@ -21,7 +23,14 @@ function App() {
             <Route path='olvide-password/:token' element={<NuevoPasword />} />
             <Route path='confirmar/:id' element={<ConfirmarCuenta />} />
           </Route>
+
+          <Route path='/proyectos' element={<RutaProtegida />}>
+            <Route index element={<Proyectos />} />
+          </Route>
         </Routes>
+
+
+
       </AuthProvider>
     </BrowserRouter>
   )
