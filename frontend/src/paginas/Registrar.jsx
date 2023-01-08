@@ -47,6 +47,7 @@ export const Registrar = () => {
 
         // console.log('creando...');
         try {
+            //TODO Mover hacia un cliente axios
             const {data} = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/usuarios`, {nombre, email, password});
 
             // console.log(data);
