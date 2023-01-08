@@ -3,7 +3,7 @@ import { AuthLayout } from './layouts/AuthLayout'
 import {ConfirmarCuenta, Login, NuevoPasword, OlvidePassword, Registrar} from './paginas'
 
 
-
+// console.log(import.meta.env.VITE_BACKEND_URL)
 
 function App() {
 
