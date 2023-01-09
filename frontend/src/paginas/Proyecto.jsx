@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import ModalFormularioTarea from '../components/ModalFormularioTarea'
@@ -8,7 +8,7 @@ import useProyectos from '../hooks/useProyectos'
 
 const Proyecto = () => {
 
-    const [modal, setModal] = useState(false)
+    // const [modal, setModal] = useState(false)
 
     const params = useParams()
     // console.log(params);
@@ -52,9 +52,9 @@ const Proyecto = () => {
                 </button>
             </div>
 
-            <p className="font-semibold text-xl mt-4">Tareas del Proyecto</p>
+            <p className="font-semibold text-xl m-4">Tareas del Proyecto</p>
 
-            <div className="bg-white shadow-md hover:shadow-none transition-shadow mt-6 rounded-lg p-4">
+            <div className="bg-white shadow-md hover:shadow-none transition-shadow m-6 rounded-lg p-4">
                 {proyecto.tareas?.length ? proyecto.tareas?.map(tarea => (
                     <Tarea
                         key={tarea._id}
@@ -63,10 +63,7 @@ const Proyecto = () => {
                 )) : <p className='text-center p-4'>No hay tareas en este proyecto</p>}
             </div>
 
-            <ModalFormularioTarea
-                modal={modal}
-                setModal = {setModal}
-            />
+            <ModalFormularioTarea/>
         </>
     )
 
