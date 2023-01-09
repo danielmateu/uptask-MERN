@@ -1,7 +1,7 @@
 
 import { createContext, useState, useEffect } from 'react'
 import clienteAxios from '../config/clienteAxios';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const ProyectosContext = createContext();
@@ -10,6 +10,32 @@ const ProyectosProvider = ({ children }) => {
 
     const [proyectos, setProyectos] = useState([]);
     const [alerta, setAlerta] = useState([])
+
+    useEffect(() => {
+        const obtenerProyectos = async() => {
+            try {
+                const token = localStorage.getItem('token');
+            if (!token) {
+                return
+            }
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+            const {data} = await clienteAxios('/proyectos', config);
+            setProyectos(data)
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        obtenerProyectos()
+    }, [])
+
 
     const navigate = useNavigate()
 
@@ -25,17 +51,17 @@ const ProyectosProvider = ({ children }) => {
         // console.log(proyecto)
         try {
             const token = localStorage.getItem('token');
-            if(!token){
+            if (!token) {
                 return
             }
 
             const config = {
                 headers: {
-                    "Content-Type" : "application/json",
+                    "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
                 }
             }
-            const {data} = await clienteAxios.post('/proyectos', proyecto, config)
+            const { data } = await clienteAxios.post('/proyectos', proyecto, config)
             console.log(data)
             setAlerta({
                 msg: 'Proyecto Creado Correctamente',

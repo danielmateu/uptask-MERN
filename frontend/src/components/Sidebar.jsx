@@ -8,7 +8,7 @@ export const Sidebar = () => {
 
     return (
         <aside className="md:w-80 lg:w-96 px-5 py-">
-            <p className="text-xl font-semibold">Hola: {auth.nombre}</p>
+            <p className="text-xl font-semibold mt-8">Hola: {auth.nombre}</p>
 
             <Link
                 to='crear-proyecto'

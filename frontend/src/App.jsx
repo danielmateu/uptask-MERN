@@ -5,6 +5,7 @@ import { AuthLayout } from './layouts/AuthLayout'
 import { RutaProtegida } from './layouts/RutaProtegida'
 import { ConfirmarCuenta, Login, NuevoPasword, OlvidePassword, Registrar } from './paginas'
 import NuevoProyecto from './paginas/NuevoProyecto'
+import Proyecto from './paginas/Proyecto'
 import Proyectos from './paginas/Proyectos'
 
 // console.log(import.meta.env.VITE_BACKEND_URL)
@@ -28,9 +29,8 @@ function App() {
             </Route>
             <Route path='/proyectos' element={<RutaProtegida />}>
               <Route index element={<Proyectos />} />
-              <Route path='crear-proyecto' element={
-                <NuevoProyecto />
-              } />
+              <Route path='crear-proyecto' element={<NuevoProyecto />} />
+              <Route path=':id' element={<Proyecto />} />
             </Route>
           </Routes>
 
