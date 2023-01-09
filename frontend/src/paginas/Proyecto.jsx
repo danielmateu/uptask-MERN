@@ -17,7 +17,9 @@ const Proyecto = () => {
         obtenerProyecto(params.id)
     }, [])
 
-    const { nombre, } = proyecto;
+    const { nombre } = proyecto;
+
+    console.log(proyecto)
 
     if (cargando) return 'Cargando...'
 
