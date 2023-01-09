@@ -12,7 +12,7 @@ export const FormularioProyecto = () => {
 
     const {mostrarAlerta, alerta, submitProyecto} = useProyectos();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault()
 
         if([nombre, descripcion, fechaEntrega, cliente].includes('')){
@@ -25,7 +25,12 @@ export const FormularioProyecto = () => {
         }
 
         //Pasar los datos hacia el provider
-        submitProyecto({ nombre, descripcion, fechaEntrega, cliente })
+        await submitProyecto({ nombre, descripcion, fechaEntrega, cliente })
+
+        setNombre('')
+        setDescripcion('')
+        setFechaEntrega('')
+        setCliente('')
     }
 
     const {msg} = alerta

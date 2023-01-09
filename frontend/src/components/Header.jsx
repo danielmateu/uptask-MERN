@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 export const Header = () => {
     return (
-        <header className="px-4 py-5 bg-white border-b">
+        <header className="px-4 py-10 bg-white border-b">
             <div className="md:flex md:justify-between">
                 <h2 className="text-4xl text-sky-400 font-semibold text-center">
                     Uptask
