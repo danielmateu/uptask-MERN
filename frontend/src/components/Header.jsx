@@ -25,7 +25,7 @@ export const Header = () => {
                     </Link>
                     <button 
                         type="button"
-                        className="text-black hover:text-white text-sm bg-sky-400 hover:bg-sky-500 p-2 rounded font-semibold transition-all"
+                        className="text-black hover:text-gray-800 text-sm bg-red-200 hover:bg-red-400 p-2 rounded font-semibold transition-all"
                     >
                         Cerrar Sesión
                     </button>
