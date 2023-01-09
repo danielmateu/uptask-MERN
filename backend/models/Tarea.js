@@ -23,7 +23,7 @@ const tareaSchema = mongoose.Schema({
         required: true,
         default: Date.now(),
     },
-    proridad: {
+    prioridad: {
         type: String,
         required: true,
         enum: ['Baja', 'Media', 'Alta']
