@@ -6,7 +6,7 @@ import useProyectos from "../hooks/useProyectos";
 export const Proyectos = () => {
 
     const {proyectos} = useProyectos();
-    console.log(proyectos);
+    // console.log(proyectos);
     return (
         <>
             <h1 className="text-4xl font-semibold mt-8 ml-8">Proyectos</h1>
