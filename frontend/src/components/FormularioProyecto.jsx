@@ -1,21 +1,41 @@
+import { useEffect } from "react"
 import { useState } from "react"
+import { useParams } from "react-router-dom"
 import useProyectos from "../hooks/useProyectos"
 import { Alerta } from "./Alerta"
 
 
 export const FormularioProyecto = () => {
 
+    const [id, setId] = useState(null)
     const [nombre, setNombre] = useState('')
     const [descripcion, setDescripcion] = useState('')
     const [fechaEntrega, setFechaEntrega] = useState('')
     const [cliente, setCliente] = useState('')
 
-    const {mostrarAlerta, alerta, submitProyecto} = useProyectos();
+    const { mostrarAlerta, alerta, submitProyecto, proyecto } = useProyectos();
 
-    const handleSubmit = async(e) => {
+    const params = useParams()
+
+    useEffect(() => {
+        if(params.id){
+            setId(proyecto._id)
+            setNombre(proyecto.nombre)
+            setDescripcion(proyecto.descripcion)
+            setFechaEntrega(proyecto.fechaEntrega?.split('T')[0])
+            setCliente(proyecto.cliente)
+
+            // console.log(proyecto.fechaEntrega);
+        }else{
+            console.log('Nuevo proyecto')
+        }
+    }, [params])
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
-        if([nombre, descripcion, fechaEntrega, cliente].includes('')){
+        if ([nombre, descripcion, fechaEntrega, cliente].includes('')) {
             mostrarAlerta({
                 msg: 'Todos los campos son obligatorios',
                 error: true
@@ -33,10 +53,10 @@ export const FormularioProyecto = () => {
         setCliente('')
     }
 
-    const {msg} = alerta
+    const { msg } = alerta
 
     return (
-        <form 
+        <form
             className="bg-white py-10 md:w-1/2 rounded-lg px-4 shadow"
             onSubmit={handleSubmit}
         >
@@ -92,12 +112,12 @@ export const FormularioProyecto = () => {
                 />
             </div>
             <input
-            type="submit"
-            value='Crear Proyecto'
-            className="bg-sky-200 hover:bg-sky-400 hover:text-gray-800 p-2 font-semibold w-full rounded transition-all cursor-pointer mb-2"/>
+                type="submit"
+                value={id ? 'Actualizar Proyecto' : 'Crear Proyecto'}
+                className="bg-sky-200 hover:bg-sky-400 hover:text-gray-800 p-2 font-semibold w-full rounded transition-all cursor-pointer mb-2" />
 
             {
-                msg && <Alerta alerta={alerta}/>
+                msg && <Alerta alerta={alerta} />
             }
         </form>
     )
