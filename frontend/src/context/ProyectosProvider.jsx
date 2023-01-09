@@ -14,22 +14,22 @@ const ProyectosProvider = ({ children }) => {
     const [cargando, setCargando] = useState(false)
 
     useEffect(() => {
-        const obtenerProyectos = async() => {
+        const obtenerProyectos = async () => {
             try {
                 const token = localStorage.getItem('token');
-            if (!token) {
-                return
-            }
-
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
+                if (!token) {
+                    return
                 }
-            }
 
-            const {data} = await clienteAxios('/proyectos', config);
-            setProyectos(data)
+                const config = {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+
+                const { data } = await clienteAxios('/proyectos', config);
+                setProyectos(data)
             } catch (error) {
                 console.log(error);
             }
@@ -49,8 +49,61 @@ const ProyectosProvider = ({ children }) => {
         }, 4000)
     }
 
-    const submitProyecto = async (proyecto) => {
-        // console.log(proyecto)
+    const submitProyecto = async proyecto => {
+
+        if (proyecto.id) {
+            await editarProyecto(proyecto)
+        } else {
+            await nuevoProyecto(proyecto)
+        }
+
+        return;
+
+    }
+
+    const editarProyecto = async proyecto => {
+        // console.log('Editando')
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                return
+            }
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+            const { data } = await clienteAxios.put(`/proyectos/${proyecto.id}`, proyecto, config);
+            // console.log(data)
+            //Sincronizar el state
+            const proyectosActualizados = proyectos.map(proyectoState => proyectoState._id === data._id ? data : proyectoState)
+
+            setProyectos(proyectosActualizados);
+
+            //Mostrar la alerta
+            setAlerta({
+                msg: 'Proyecto Actualizado Correctamente',
+                error: false
+            })
+
+            //Redireccionar
+            setTimeout(() => {
+                setAlerta({})
+                navigate('/proyectos')
+            }, 3000);
+
+
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const nuevoProyecto = async (proyecto) => {
+        // console.log('Creando')
         try {
             const token = localStorage.getItem('token');
             if (!token) {
@@ -97,15 +150,51 @@ const ProyectosProvider = ({ children }) => {
                 }
             }
 
-            const {data} = await clienteAxios(`/proyectos/${id}`, config)
+            const { data } = await clienteAxios(`/proyectos/${id}`, config)
             // console.log(data)
             setProyecto(data)
 
 
         } catch (error) {
             console.log(error)
-        } finally{
+        } finally {
             setCargando(false);
+        }
+    }
+
+    const eliminarProyecto = async id => {
+        // console.log('Eliminando', id)
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                return
+            }
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+            const { data } = await clienteAxios.delete(`/proyectos/${id}`, config)
+
+            //Sincronizar el state
+            const proyectosActualizados = proyectos.filter(proyectoState => proyectoState._id !== id );
+
+            setProyectos(proyectosActualizados)
+            
+            setAlerta({
+                msg: data.msg,
+                error: false
+            })
+
+            setTimeout(() => {
+                setAlerta({});
+                navigate('/proyectos')
+            }, 3000);
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -119,7 +208,8 @@ const ProyectosProvider = ({ children }) => {
                 submitProyecto,
                 obtenerProyecto,
                 proyecto,
-                cargando
+                cargando,
+                eliminarProyecto
             }}
         >
             {children}
