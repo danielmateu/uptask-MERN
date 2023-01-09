@@ -1,13 +1,17 @@
+import { useState } from 'react'
 import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import ModalFormularioTarea from '../components/ModalFormularioTarea'
 import useProyectos from '../hooks/useProyectos'
 
 
 const Proyecto = () => {
 
+    const [modal, setModal] = useState(false)
+
     const params = useParams()
     // console.log(params);
-    const { obtenerProyecto, proyecto, cargando } = useProyectos()
+    const { obtenerProyecto, proyecto, cargando, handleModalTarea } = useProyectos()
 
     useEffect(() => {
         obtenerProyecto(params.id)
@@ -33,7 +37,10 @@ const Proyecto = () => {
                 </div>
             </div>
             <div className="flex items-center justify-center md:justify-start">
-                <button type='button' className='flex items-center justify-between bg-sky-200 hover:bg-sky-300 transition-colors text-sm p-2 mt-4 md:w-auto rounded-lg font-semibold w-96'>
+                <button
+                    onClick={handleModalTarea}
+                    type='button'
+                    className='flex items-center justify-between bg-sky-200 hover:bg-sky-300 transition-colors text-sm p-2 mt-4 md:w-auto rounded-lg font-semibold w-96'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -42,6 +49,10 @@ const Proyecto = () => {
                 </button>
             </div>
 
+            <ModalFormularioTarea
+                modal={modal}
+                setModal = {setModal}
+            />
         </>
     )
 

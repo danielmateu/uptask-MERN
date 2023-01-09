@@ -15,3 +15,4 @@
 - tailwindcss (npx tailwindcss init -p para crear el archivo de configuración de tailwind)
 - postcss
 - autoprefixer
+- headlessui
