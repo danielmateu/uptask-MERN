@@ -13,6 +13,8 @@ export const Login = () => {
 
     const { setAuth } = useAuth();
 
+    const navigate = useNavigate()
+
     // console.log(auth);
     // console.log(cargando);
     
@@ -33,8 +35,9 @@ export const Login = () => {
             setAlerta('');
             localStorage.setItem('token', data.token);
             setAuth(data)
-
+            navigate('/proyectos')
         } catch (error) {
+            console.log(error)
             setAlerta({
                 msg: error.response.data.msg,
                 error: true
