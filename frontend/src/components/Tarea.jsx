@@ -14,7 +14,7 @@ export const Tarea = ({ tarea }) => {
             <div>
                 <p className="mb-2 text-xl">{nombre}</p>
                 <p className="mb-2 text-sm text-gray-400">{descripcion}</p>
-                <p className="mb-2 text-xl">{formatearFecha(fechaEntrega)}</p>
+                <p className="mb-2 text-sm">{formatearFecha(fechaEntrega)}</p>
                 <p className="mb-2 text-gray-500">Prioridad: {prioridad}</p>
                 {/* <p className="text-xl">{nombre}</p> */}
             </div>
