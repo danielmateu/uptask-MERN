@@ -17,12 +17,12 @@ export const Login = () => {
 
     // console.log(auth);
     // console.log(cargando);
-    
 
-    const handleSubmit = async(e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if([email,password].includes('')){
+        if ([email, password].includes('')) {
             setAlerta({
                 msg: 'Todos los campos son obligatorios',
                 error: true
@@ -31,7 +31,7 @@ export const Login = () => {
         }
 
         try {
-            const {data} = await clienteAxios.post('/usuarios/login', {email, password})
+            const { data } = await clienteAxios.post('/usuarios/login', { email, password })
             setAlerta('');
             localStorage.setItem('token', data.token);
             setAuth(data)
@@ -45,19 +45,15 @@ export const Login = () => {
         }
     }
 
-    const {msg} = alerta;
+    const { msg } = alerta;
 
     return (
         <>
             <h1 className="text-sky-400 text-6xl font-semibold mb-10">Inicia Sesion y administra tus {' '}<span className="text-slate-400">proyectos</span>
             </h1>
 
-            {
-                msg && <Alerta alerta={alerta}/>
-            }
-
-            <form 
-                action="" 
+            <form
+                action=""
                 className="my-10 bg-white rounded-lg shadow-md p-10 "
                 onSubmit={handleSubmit}
             >
@@ -66,10 +62,10 @@ export const Login = () => {
                     <input
                         id='email'
                         type="email"
-                        placeholder="Email de registro" 
-                        className="w-full mt-3 p-3 rounded-xl" 
+                        placeholder="Email de registro"
+                        className="w-full mt-3 p-3 rounded-xl"
                         value={email}
-                        onChange={ e => setEmail(e.target.value)}
+                        onChange={e => setEmail(e.target.value)}
                     />
                 </div>
                 <div className="my-5">
@@ -77,14 +73,18 @@ export const Login = () => {
                     <input
                         id='password'
                         type="password"
-                        placeholder="Password de registro" 
+                        placeholder="Password de registro"
                         className="w-full mt-3 p-3 rounded-xl"
                         value={password}
-                        onChange={ e => setPassword(e.target.value)} 
+                        onChange={e => setPassword(e.target.value)}
                     />
                 </div>
 
-                <input type="submit" value='Iniciar Sesión' className="bg-sky-400 p-4 rounded-xl shadow-md hover:shadow-none transition-all font-semibold text-white hover:cursor-pointer hover:text-gray-500 w-full mb-5"  />
+                <input type="submit" value='Iniciar Sesión' className="bg-sky-400 p-4 rounded-xl shadow-md hover:shadow-none transition-all font-semibold text-white hover:cursor-pointer hover:text-gray-500 w-full mb-5" />
+
+                {
+                    msg && <Alerta alerta={alerta} />
+                }
             </form>
 
             <nav className="lg:flex lg:justify-between">
@@ -92,13 +92,13 @@ export const Login = () => {
                     className="block text-center my-4 text-slate-500 hover:text-slate-600"
                     to='/registrar'
                 >
-                ¿No tienes una cuenta? Regístrate
+                    ¿No tienes una cuenta? Regístrate
                 </Link>
                 <Link
                     className="block text-center my-4 text-slate-500 hover:text-slate-600"
                     to='/olvide-password'
                 >
-                Olvidé mi Password
+                    Olvidé mi Password
                 </Link>
 
             </nav>

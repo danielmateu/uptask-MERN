@@ -49,8 +49,9 @@ const ModalFormularioTarea = () => {
             return
         }
 
-        await submitTarea({nombre, descripcion,fechaEntrega, prioridad, proyecto: params.id});
+        await submitTarea({id, nombre, descripcion,fechaEntrega, prioridad, proyecto: params.id});
 
+        setId('')
         setNombre('')
         setDescripcion('')
         setFechaEntrega('')
@@ -189,7 +190,7 @@ const ModalFormularioTarea = () => {
                                         <input
                                             type="submit"
                                             className='bg-sky-200 hover:bg-sky-300 w-full transition-colors p-2 rounded-lg mb-4 hover:shadow font-semibold cursor-pointer text-sm' 
-                                            value={id ? 'Guardar Cambios': 'Crear Tarea'}
+                                            value={ id ? 'Guardar Cambios': 'Crear Tarea' }
                                         />
 
                                             {
