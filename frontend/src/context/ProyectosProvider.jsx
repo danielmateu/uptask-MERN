@@ -14,6 +14,7 @@ const ProyectosProvider = ({ children }) => {
     const [cargando, setCargando] = useState(false)
     const [modalFormularioTarea, setModalFormularioTarea] = useState(false)
     const [tarea, setTarea] = useState({})
+    const [modalEliminarTarea, setModalEliminarTarea] = useState(false)
 
     useEffect(() => {
         const obtenerProyectos = async () => {
@@ -182,10 +183,10 @@ const ProyectosProvider = ({ children }) => {
             const { data } = await clienteAxios.delete(`/proyectos/${id}`, config)
 
             //Sincronizar el state
-            const proyectosActualizados = proyectos.filter(proyectoState => proyectoState._id !== id );
+            const proyectosActualizados = proyectos.filter(proyectoState => proyectoState._id !== id);
 
             setProyectos(proyectosActualizados)
-            
+
             setAlerta({
                 msg: data.msg,
                 error: false
@@ -214,19 +215,19 @@ const ProyectosProvider = ({ children }) => {
                 if (!token) {
                     return
                 }
-    
+
                 const config = {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`
                     }
                 }
-    
-                const {data} = await clienteAxios.post('/tareas', tarea, config)
+
+                const { data } = await clienteAxios.post('/tareas', tarea, config)
                 // console.log(data)
-                const proyectoActualizado = {...proyecto}
+                const proyectoActualizado = { ...proyecto }
                 proyectoActualizado.tareas = [...proyecto.tareas, data]
-    
+
                 setProyecto(proyectoActualizado);
                 setAlerta({})
                 setModalFormularioTarea(false);
@@ -241,7 +242,7 @@ const ProyectosProvider = ({ children }) => {
                 if (!token) {
                     return
                 }
-    
+
                 const config = {
                     headers: {
                         "Content-Type": "application/json",
@@ -249,10 +250,10 @@ const ProyectosProvider = ({ children }) => {
                     }
                 }
 
-                const {data} = await clienteAxios.put(`/tareas/${tarea.id}`, tarea, config)
+                const { data } = await clienteAxios.put(`/tareas/${tarea.id}`, tarea, config)
 
                 //TODO Actualizar el DOM
-                const proyectoActualizado = {...proyecto}
+                const proyectoActualizado = { ...proyecto }
                 proyectoActualizado.tareas = proyectoActualizado.tareas.map(tareaState => tareaState._id === data._id ? data : tareaState)
                 setProyecto(proyectoActualizado)
                 setAlerta({})
@@ -265,9 +266,9 @@ const ProyectosProvider = ({ children }) => {
             }
         }
 
-        if(tarea?.id){
+        if (tarea?.id) {
             await editarTarea(tarea)
-        }else{
+        } else {
             await crearTarea(tarea)
         }
 
@@ -276,6 +277,11 @@ const ProyectosProvider = ({ children }) => {
     const handleModalEditarTarea = tarea => {
         setTarea(tarea)
         setModalFormularioTarea(true);
+    }
+
+    const handleModalEliminarTarea = tarea => {
+        setTarea(tarea)
+        setModalEliminarTarea(!modalEliminarTarea)
     }
 
     return (
@@ -294,7 +300,9 @@ const ProyectosProvider = ({ children }) => {
                 handleModalTarea,
                 submitTarea,
                 handleModalEditarTarea,
-                tarea
+                tarea,
+                handleModalEliminarTarea,
+                modalEliminarTarea
             }}
         >
             {children}

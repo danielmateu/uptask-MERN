@@ -5,7 +5,7 @@ import useProyectos from "../hooks/useProyectos"
 
 export const Tarea = ({ tarea }) => {
 
-    const {handleModalEditarTarea} = useProyectos()
+    const {handleModalEditarTarea, handleModalEliminarTarea} = useProyectos()
 
     const { descripcion, nombre, prioridad, fechaEntrega, estado, _id } = tarea
     return (
@@ -38,7 +38,10 @@ export const Tarea = ({ tarea }) => {
                     </button>
                 )}
 
-                <button className='text-gray-400 hover:text-red-600 transition-colors font-semibold'>
+                <button 
+                    className='text-gray-400 hover:text-red-600 transition-colors font-semibold'
+                    onClick={() => handleModalEliminarTarea(tarea)}
+                >
                     Eliminar
                 </button>
             </div>
