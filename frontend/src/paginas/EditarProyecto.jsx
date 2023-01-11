@@ -4,7 +4,7 @@ import { FormularioProyecto } from "../components/FormularioProyecto"
 import useProyectos from "../hooks/useProyectos"
 
 
-const EditarProyecto = () => {
+export const EditarProyecto = () => {
 
     const params = useParams()
     // console.log(params);

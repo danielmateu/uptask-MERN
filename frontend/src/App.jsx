@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { NuevoColaborador } from './components/NuevoColaborador'
 import { AuthProvider } from './context/AuthProvider'
 import { ProyectosProvider } from './context/ProyectosProvider'
 import { AuthLayout } from './layouts/AuthLayout'
 import { RutaProtegida } from './layouts/RutaProtegida'
-import { ConfirmarCuenta, Login, NuevoPasword, OlvidePassword, Registrar } from './paginas'
-import EditarProyecto from './paginas/EditarProyecto'
+import {ConfirmarCuenta, Login, NuevoPasword, OlvidePassword, Registrar, EditarProyecto,Proyectos} from './paginas'
 import NuevoProyecto from './paginas/NuevoProyecto'
 import Proyecto from './paginas/Proyecto'
-import Proyectos from './paginas/Proyectos'
+
 
 // console.log(import.meta.env.VITE_BACKEND_URL)
 
@@ -31,6 +31,7 @@ function App() {
             <Route path='/proyectos' element={<RutaProtegida />}>
               <Route index element={<Proyectos />} />
               <Route path='crear-proyecto' element={<NuevoProyecto />} />
+              <Route path='nuevo-colaborador/:id' element={<NuevoColaborador />} />
               <Route path=':id' element={<Proyecto />} />
               <Route path='editar/:id' element={<EditarProyecto />} />
             </Route>

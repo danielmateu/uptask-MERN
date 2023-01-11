@@ -3,11 +3,14 @@ import { Link } from "react-router-dom"
 
 
 export const Header = () => {
+
     return (
         <header className="px-4 py-10 bg-white border-b md:flex md:justify-between gap-4">
 
-            <h2 className="text-4xl text-sky-400 font-semibold text-center ">
-                Uptask
+            <h2 className="text-4xl text-sky-400 hover:text-sky-500 transition-colors cursor-pointer font-semibold text-center ">
+                <Link to={'/proyectos'}>
+                    Uptask
+                </Link>
             </h2>
             <form className="flex items-center justify-center m-2">
 
