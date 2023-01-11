@@ -58,7 +58,7 @@ export const FormularioProyecto = () => {
 
     return (
         <form
-            className="bg-white py-10 md:w-1/2 rounded-lg px-4 shadow"
+            className="bg-white py-10 w-full m-4 md:w-10/12 md:m-0   rounded-lg px-4 shadow"
             onSubmit={handleSubmit}
         >
 

@@ -31,7 +31,7 @@ export const EditarProyecto = () => {
         <>
 
             <div className="mt-6 flex justify-between">
-                <h1 className="font-black text-4xl mt-6">Editar Proyecto: {nombre}</h1>
+                <h1 className="font-black text-4xl ml-4 md:ml-0" >Editar Proyecto: {nombre}</h1>
                 {/* <h1 className="font-black text-4xl">{nombre}</h1> */}
                 <div className='flex items-center gap-2 text-gray-400 hover:text-gray-800 mr-4 transition-all' >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
