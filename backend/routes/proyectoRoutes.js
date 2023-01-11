@@ -6,6 +6,7 @@ import {
     obtenerProyecto,
     editarProyecto,
     eliminarProyecto,
+    buscarColaborador,
     agregarColaborador,
     eliminarColaborador,
     
@@ -22,10 +23,11 @@ router.route('/:id').get(checkAuth, obtenerProyecto)
     .put( checkAuth, editarProyecto )
     .delete( checkAuth, eliminarProyecto)
 
+router.post('/colaboradores', checkAuth, buscarColaborador)
 
-router.post('/agregar-colaborador/:id', checkAuth, agregarColaborador);
+router.post('/colaboradores/:id', checkAuth, agregarColaborador);
 
-router.post('/eliminar-colaborador/:id', checkAuth, eliminarColaborador);
+router.delete('/colaboradores/:id', checkAuth, eliminarColaborador);
 
 export default router;
 

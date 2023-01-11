@@ -48,8 +48,8 @@ const Proyecto = () => {
                 <button
                     onClick={handleModalTarea}
                     type='button'
-                    className='flex items-center justify-between bg-sky-200 hover:bg-sky-300 transition-colors text-sm p-2 mt-4 md:w-auto rounded-lg font-semibold w-96'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                    className='flex items-center justify-between gap-4 bg-sky-200 hover:bg-sky-300 transition-colors text-sm p-2 mt-4 w-auto rounded-lg font-semibold '>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 hover:translate-x-2 hover:rotate-45 transition-transform">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     Nueva Tarea
