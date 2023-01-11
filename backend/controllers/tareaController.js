@@ -93,7 +93,7 @@ const eliminarTarea = async (req, res, next) => {
     }
 
     /* Checking if the user is the owner of the project. */
-    if (tarea.proyecto.toString() !== req.usuario._id.toString()) {
+    if (tarea.proyecto.creador.toString() !== req.usuario._id.toString()) {
         const error = new Error('Acción no válida...')
         return res.status(403).json({ msg: error.message })
     }
@@ -101,7 +101,7 @@ const eliminarTarea = async (req, res, next) => {
     /* Deleting the task. */
     try {
         await tarea.deleteOne();
-        res.json({ msg: 'Tarea Eliminada...' })
+        res.json({ msg: 'Tarea eliminada correctamente' })
     } catch (error) {
         console.log(error);
     }
@@ -109,7 +109,7 @@ const eliminarTarea = async (req, res, next) => {
     console.log(tarea);
 }
 
-const camiarEstadoTarea = async (req, res, next) => { 
+const camiarEstadoTarea = async (req, res) => { 
 
 
 }

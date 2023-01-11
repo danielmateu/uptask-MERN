@@ -10,7 +10,7 @@ export const Tarea = ({ tarea }) => {
     const { descripcion, nombre, prioridad, fechaEntrega, estado, _id } = tarea
     return (
 
-        <div className="border-b p-2 flex justify-between items-center">
+        <div className="border-b p-2 xs:flex-col sm:flex justify-between items-center">
             <div>
                 <p className="mb-2 text-xl">{nombre}</p>
                 <p className="mb-2 text-sm text-gray-400">{descripcion}</p>
@@ -18,7 +18,7 @@ export const Tarea = ({ tarea }) => {
                 <p className="mb-2 text-gray-500">Prioridad: {prioridad}</p>
                 {/* <p className="text-xl">{nombre}</p> */}
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap justify-around">
                 <button 
                     className='text-gray-400 hover:text-sky-600 transition-colors font-semibold'
                     onClick={() => handleModalEditarTarea(tarea)}
