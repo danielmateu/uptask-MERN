@@ -359,7 +359,39 @@ const ProyectosProvider = ({ children }) => {
         }
     }
 
-    const {msg} = alerta
+    const agregarColaborador = async (email) => {
+        try {
+            // console.log(email);
+            const token = localStorage.getItem('token');
+            if (!token) {
+                return
+            }
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+            const {data} = await clienteAxios.post(`/proyectos/colaboradores/${proyecto._id}`, email, config );
+            // console.log(data);
+            setAlerta({
+                msg: data.msg,
+                error: false
+            })
+
+            setColaborador({});
+            setAlerta({});
+
+        } catch (error) {
+            // console.log(error.response)
+            setAlerta({
+                msg: error.response.data.msg,
+                error: true
+            })
+        }
+    }
 
     return (
 
@@ -381,7 +413,9 @@ const ProyectosProvider = ({ children }) => {
                 handleModalEliminarTarea,
                 modalEliminarTarea,
                 eliminarTarea,
-                submitColaborador
+                submitColaborador, 
+                colaborador,
+                agregarColaborador
             }}
         >
             {children}
