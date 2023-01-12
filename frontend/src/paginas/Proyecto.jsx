@@ -6,6 +6,7 @@ import ModalEliminarTarea from '../components/ModalEliminarTarea'
 import { Tarea } from '../components/Tarea'
 import useProyectos from '../hooks/useProyectos'
 import { Alerta } from '../components/Alerta'
+import { Colaborador } from '../components'
 
 
 
@@ -23,7 +24,7 @@ const Proyecto = () => {
 
     const { nombre } = proyecto;
 
-    // console.log(proyecto)
+    console.log(proyecto)
 
     if (cargando) return 'Cargando...'
 
@@ -74,6 +75,7 @@ const Proyecto = () => {
                 )) : <p className='text-center p-4'>No hay tareas en este proyecto</p>}
             </div>
 
+            
             <div className="flex items-center justify-between mt-10">
                 <p className="font-semibold text-xl m-4">Colaboradores</p>
                 <Link to={`/proyectos/nuevo-colaborador/${proyecto._id}`}
@@ -81,6 +83,15 @@ const Proyecto = () => {
                 >
                     Añadir
                 </Link>
+            </div>
+
+            <div className="bg-white shadow-md hover:shadow-none transition-shadow m-6 rounded-lg p-4">
+                {proyecto.colaboradores?.length ? proyecto.colaboradores?.map(colaborador => (
+                    <Colaborador
+                        key={colaborador._id}
+                        colaborador={colaborador}
+                    />
+                )) : <p className='text-center p-4'>No hay colaboradores en este proyecto</p>}
             </div>
 
 
