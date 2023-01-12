@@ -7,6 +7,8 @@ import { Tarea } from '../components/Tarea'
 import useProyectos from '../hooks/useProyectos'
 import { Alerta } from '../components/Alerta'
 import { Colaborador } from '../components'
+import ModalEliminarColaborador from '../components/ModalEliminarColaborador'
+
 
 
 
@@ -24,7 +26,7 @@ const Proyecto = () => {
 
     const { nombre } = proyecto;
 
-    console.log(proyecto)
+    // console.log(proyecto)
 
     if (cargando) return 'Cargando...'
 
@@ -97,6 +99,7 @@ const Proyecto = () => {
 
             <ModalFormularioTarea />
             <ModalEliminarTarea />
+            <ModalEliminarColaborador/>
         </>
     )
 
