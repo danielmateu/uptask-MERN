@@ -7,7 +7,7 @@ export const Colaborador = ({ colaborador }) => {
     const {handleModalEliminarColaborador} = useProyectos()
 
     return (
-        <div className="border p-4 mb-2 flex justify-between items-center">
+        <div className="border p-4 mb-2 flex justify-between items-center rounded-lg hover:bg-slate-200 transition-colors">
             <div>
                 <p>{nombre}</p>
                 <p className="text-sm text-gray-600">{email}</p>

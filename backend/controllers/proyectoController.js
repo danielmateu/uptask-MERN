@@ -16,8 +16,15 @@ const nuevoProyecto = async (req, res) => {
 }
 
 const obtenerProyectos = async (req, res) => {
-    const proyectos = await Proyecto.find().where('creador').equals(req.usuario).select('-tareas');
-
+    const proyectos = await Proyecto.find({
+        '$or' : [
+            {'colaboradores': {$in: req.usuario}},
+            {'creador': {$in: req.usuario}},
+        ]
+    })
+    // .where('creador')
+    // .equals(req.usuario)
+    .select('-tareas');
     res.json(proyectos);
 }
 

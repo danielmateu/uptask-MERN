@@ -10,7 +10,7 @@ export const Tarea = ({ tarea }) => {
     const { descripcion, nombre, prioridad, fechaEntrega, estado, _id } = tarea
     return (
 
-        <div className="border rounded-xl p-2 m-2 xs:flex-col sm:flex justify-between items-center">
+        <div className="border rounded-xl p-4 m-2 xs:flex-col sm:flex justify-between items-center">
             <div className="">
                 <p className="mb-2 text-xl">{nombre}</p>
                 <p className="mb-2 text-sm text-gray-400">{descripcion}</p>

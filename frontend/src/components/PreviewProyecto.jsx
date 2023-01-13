@@ -6,7 +6,7 @@ export const PreviewProyecto = ({proyecto}) => {
     const {nombre, _id, cliente } = proyecto
 
     return (
-        <div className="border-b p-5 flex m-5">
+        <div className="border p-5 flex m-5 hover:bg-slate-200 transition-colors rounded-xl">
             <p className="flex-1">{nombre} <span className="text-sm text-gray-400">{cliente}</span></p>
 
             <Link to={`${_id}`} className='text-gray-400 hover:text-gray-600 font-semibold'>Ver Proyecto</Link>
