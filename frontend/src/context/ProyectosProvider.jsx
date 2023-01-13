@@ -398,8 +398,7 @@ const ProyectosProvider = ({ children }) => {
     }
 
     const handleModalEliminarColaborador = (colaborador) =>{
-        setModalEliminarColaborador(!modalEliminarTarea)
-
+        setModalEliminarColaborador(!modalEliminarColaborador)
         setColaborador(colaborador)
     }
 
