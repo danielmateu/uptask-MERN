@@ -110,7 +110,7 @@ const eliminarTarea = async (req, res, next) => {
 }
 
 const camiarEstadoTarea = async (req, res) => { 
-
+    console.log(req.params.id)
 
 }
 

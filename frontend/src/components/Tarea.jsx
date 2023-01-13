@@ -6,7 +6,7 @@ import useProyectos from "../hooks/useProyectos"
 
 export const Tarea = ({ tarea }) => {
 
-    const { handleModalEditarTarea, handleModalEliminarTarea } = useProyectos()
+    const { handleModalEditarTarea, handleModalEliminarTarea, completarTarea } = useProyectos()
     const admin = useAdmin();
 
     const { descripcion, nombre, prioridad, fechaEntrega, estado, _id } = tarea
@@ -30,17 +30,9 @@ export const Tarea = ({ tarea }) => {
                     </button>
                 )}
 
-                {estado ? (
-
-                    <button className='text-gray-400 hover:text-green-500 transition-colors font-semibold'>
-                        Completa
-                    </button>
-                ) : (
-
-                    <button className='text-gray-400 hover:text-yellow-500 transition-colors font-semibold'>
-                        Incompleta
-                    </button>
-                )}
+                <button className={`${estado ? 'text-green-400 hover:text-green-500' : 'text-gray-400 hover:text-gray-500'} transition-colors font-semibold`}
+                        onClick={() => completarTarea(_id)}
+                    >{estado ? 'Completa' : 'Incompleta'}</button>
                 {   admin && (
                         <button
                             className='text-gray-400 hover:text-red-500 transition-colors font-semibold'
