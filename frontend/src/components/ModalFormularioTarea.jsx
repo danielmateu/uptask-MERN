@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom'
 
 const PRIORIDAD = ['Baja',' Media', 'Alta']
 
-const ModalFormularioTarea = () => {
+export const ModalFormularioTarea = () => {
 
     const [id, setId] = useState('')
     const [nombre, setNombre] = useState('')
@@ -210,4 +210,4 @@ const ModalFormularioTarea = () => {
     )
 }
 
-export default ModalFormularioTarea
+// export default ModalFormularioTarea

@@ -1,11 +1,13 @@
 import { formatearFecha } from "../helpers/formatearFecha"
+import useAdmin from "../hooks/useAdmin"
 import useProyectos from "../hooks/useProyectos"
 
 
 
 export const Tarea = ({ tarea }) => {
 
-    const {handleModalEditarTarea, handleModalEliminarTarea} = useProyectos()
+    const { handleModalEditarTarea, handleModalEliminarTarea } = useProyectos()
+    const admin = useAdmin();
 
     const { descripcion, nombre, prioridad, fechaEntrega, estado, _id } = tarea
     return (
@@ -19,12 +21,14 @@ export const Tarea = ({ tarea }) => {
                 {/* <p className="text-xl">{nombre}</p> */}
             </div>
             <div className="flex gap-2 flex-wrap ">
-                <button 
-                    className='text-gray-400 hover:text-sky-500 transition-colors font-semibold'
-                    onClick={() => handleModalEditarTarea(tarea)}
-                >
-                    Editar
-                </button>
+                {admin && (
+                    <button
+                        className='text-gray-400 hover:text-sky-500 transition-colors font-semibold'
+                        onClick={() => handleModalEditarTarea(tarea)}
+                    >
+                        Editar
+                    </button>
+                )}
 
                 {estado ? (
 
@@ -37,13 +41,15 @@ export const Tarea = ({ tarea }) => {
                         Incompleta
                     </button>
                 )}
-
-                <button 
-                    className='text-gray-400 hover:text-red-500 transition-colors font-semibold'
-                    onClick={() => handleModalEliminarTarea(tarea)}
-                >
-                    Eliminar
-                </button>
+                {   admin && (
+                        <button
+                            className='text-gray-400 hover:text-red-500 transition-colors font-semibold'
+                            onClick={() => handleModalEliminarTarea(tarea)}
+                        >
+                            Eliminar
+                        </button>
+                    )
+                }
             </div>
         </div>
     )

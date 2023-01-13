@@ -6,7 +6,7 @@ import useProyectos from '../hooks/useProyectos'
 
 
 
-const ModalEliminarColaborador = () => {
+export const ModalEliminarColaborador = () => {
 
 
     const { handleModalEliminarColaborador, modalEliminarColaborador, eliminarColaborador } = useProyectos()
@@ -99,4 +99,3 @@ const ModalEliminarColaborador = () => {
     )
 }
 
-export default ModalEliminarColaborador

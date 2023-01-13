@@ -6,9 +6,9 @@ const NuevoProyecto = () => {
 
     return (
         <>
-            <h1 className="text-4xl font-semibold">Crear Proyecto</h1>
+            <h1 className="text-4xl p-4 font-semibold">Crear Proyecto</h1>
 
-            <div className="mt-10 flex justify-center">
+            <div className="mt-4 flex justify-center">
                 <FormularioProyecto/>
             </div>
         </>

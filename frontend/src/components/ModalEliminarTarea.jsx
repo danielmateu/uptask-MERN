@@ -6,7 +6,7 @@ import useProyectos from '../hooks/useProyectos'
 
 
 
-const ModalFormularioTarea = () => {
+export const ModalEliminarTarea = () => {
 
 
     const { handleModalEliminarTarea, modalEliminarTarea, eliminarTarea } = useProyectos()
@@ -99,4 +99,4 @@ const ModalFormularioTarea = () => {
     )
 }
 
-export default ModalFormularioTarea
+// export default ModalFormularioTarea
