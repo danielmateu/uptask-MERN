@@ -132,8 +132,8 @@ const ProyectosProvider = ({ children }) => {
             })
 
             setTimeout(() => {
-                setAlerta({});
                 navigate('/proyectos')
+                setAlerta({});
             }, 3000);
         } catch (error) {
             console.log(error);
@@ -159,10 +159,18 @@ const ProyectosProvider = ({ children }) => {
             // console.log(data)
             setProyecto(data)
             setAlerta({})
+            setTimeout(() => {
+                setAlerta({})
+            }, 3000);
 
 
         } catch (error) {
-            console.log(error)
+            // console.log(error)
+            navigate('/proyectos')
+            setAlerta({
+                msg:error.response.data.msg,
+                error: true
+            })
         } finally {
             setCargando(false);
         }
