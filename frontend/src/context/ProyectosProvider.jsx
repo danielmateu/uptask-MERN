@@ -273,7 +273,7 @@ const ProyectosProvider = ({ children }) => {
 
                 const { data } = await clienteAxios.put(`/tareas/${tarea.id}`, tarea, config)
 
-                
+
                 setAlerta({})
                 setModalFormularioTarea(false)
 
@@ -326,13 +326,13 @@ const ProyectosProvider = ({ children }) => {
                 error: false
             })
 
-            
+
 
             setModalEliminarTarea(false)
             setTimeout(() => {
                 setAlerta({})
             }, 3000);
-            
+
             //SOCKET
             socket.emit('eliminar tarea', tarea)
             setTarea({})
@@ -473,12 +473,12 @@ const ProyectosProvider = ({ children }) => {
             }
 
             const { data } = await clienteAxios.post(`/tareas/estado/${id}`, {}, config);
-            // console.log(data)
-            const proyectoActualizado = { ...proyecto }
-            proyectoActualizado.tareas = proyectoActualizado.tareas.map(tareaState => tareaState._id === data._id ? data : tareaState)
-            setProyecto(proyectoActualizado)
+
             setTarea({})
             setAlerta({})
+
+            //Socket
+            socket.emit('cambiar estado', data)
 
         } catch (error) {
             console.log(error.response);
@@ -507,6 +507,13 @@ const ProyectosProvider = ({ children }) => {
 
     const acualizarTareaProyecto = tarea => {
         // Actualizar el DOM
+        const proyectoActualizado = { ...proyecto }
+        proyectoActualizado.tareas = proyectoActualizado.tareas.map(tareaState => tareaState._id === tarea._id ? tarea : tareaState)
+        setProyecto(proyectoActualizado)
+    }
+
+    const cambiarEstadoTarea = (tarea) => {
+        //Actualizar DoM
         const proyectoActualizado = { ...proyecto }
         proyectoActualizado.tareas = proyectoActualizado.tareas.map(tareaState => tareaState._id === tarea._id ? tarea : tareaState)
         setProyecto(proyectoActualizado)
@@ -543,7 +550,8 @@ const ProyectosProvider = ({ children }) => {
                 buscador,
                 submitTareasProyecto,
                 eliminarTareaProyecto,
-                acualizarTareaProyecto
+                acualizarTareaProyecto,
+                cambiarEstadoTarea
             }}
         >
             {children}
