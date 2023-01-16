@@ -5,32 +5,44 @@ import { useParams, Link } from 'react-router-dom'
 import useProyectos from '../hooks/useProyectos'
 import useAdmin from '../hooks/useAdmin'
 // import useAuth from '../hooks/useAuth'
+import { io } from "socket.io-client";
 
 import { Tarea, Alerta, Colaborador, ModalFormularioTarea, ModalEliminarTarea, ModalEliminarColaborador } from '../components'
 
 
+let socket;
 
 const Proyecto = () => {
 
-    
+
     const params = useParams()
-    const { obtenerProyecto, proyecto, cargando, handleModalTarea, alerta } = useProyectos()
+    const { obtenerProyecto, proyecto, cargando, handleModalTarea, alerta, submitTareasProyecto } = useProyectos()
     const admin = useAdmin();
 
     useEffect(() => {
         obtenerProyecto(params.id)
     }, [])
 
-    const { nombre } = proyecto;
+    useEffect(() => {
+        socket = io(import.meta.env.VITE_BACKEND_URL);
+        socket.emit('abrir proyecto', params.id)
+    }, [])
 
-    // console.log(proyecto)
+    useEffect(() => {
+        socket.on('tarea agregada', tareaNueva => {
+            if (tareaNueva.proyecto === proyecto._id) {
+                submitTareasProyecto(tareaNueva)
+            }
+            // console.log(tareaNueva);
+        })
+    })
+
+
+    const { nombre } = proyecto;
 
     if (cargando) return 'Cargando...'
 
     const { msg } = alerta
-
-    // console.log(proyecto)
-    // console.log(auth)
 
     return (
         msg && alerta.error ? <Alerta alerta={alerta} /> : (

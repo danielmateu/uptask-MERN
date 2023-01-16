@@ -66,4 +66,16 @@ io.on('connection', (socket) => {
     //     console.log('Prueba desde socket.io', proyectos)
     //     socket.emit('respuesta', {nombre: 'Dani'})
     // })
+
+    socket.on('abrir proyecto', (proyecto) => {
+        // console.log('desde el proyecto', proyecto)
+        socket.join(proyecto)
+        // socket.to('63bbfcea102f09962285a3a4').emit('respuesta', {nombre: 'Dani'})
+    })
+
+    socket.on('nueva tarea', tarea => {
+        console.log(tarea)
+        // const proyecto = tarea.proyecto
+        socket.to(tarea.proyecto).emit('tarea agregada', tarea)
+    })
 })
