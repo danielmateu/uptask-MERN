@@ -7,6 +7,7 @@
 - jsonwebtoken
 - cors
 - nodemailer
+- socket.io
 
 ## Instalaciones Frontend
 
@@ -16,3 +17,4 @@
 - postcss
 - autoprefixer
 - headlessui
+- socket.io

@@ -26,7 +26,7 @@ export const Tarea = ({ tarea }) => {
             <div className="flex gap-2 flex-col sm:flex-row items-center">
                 {admin && (
                     <button
-                        className='text-gray-400 hover:text-sky-500 transition-colors font-semibold'
+                        className='text-sky-400 hover:text-sky-500 transition-colors font-semibold'
                         onClick={() => handleModalEditarTarea(tarea)}
                     >
                         Editar
@@ -38,7 +38,7 @@ export const Tarea = ({ tarea }) => {
                     >{estado ? 'Completa' : 'Incompleta'}</button>
                 {   admin && (
                         <button
-                            className='text-gray-400 hover:text-red-500 transition-colors font-semibold'
+                            className='text-red-300 hover:text-red-500 transition-colors font-semibold'
                             onClick={() => handleModalEliminarTarea(tarea)}
                         >
                             Eliminar

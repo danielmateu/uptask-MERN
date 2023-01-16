@@ -23,7 +23,7 @@ const Proyecto = () => {
 
     const { nombre } = proyecto;
 
-    console.log(proyecto)
+    // console.log(proyecto)
 
     if (cargando) return 'Cargando...'
 
@@ -55,7 +55,7 @@ const Proyecto = () => {
 
                 {admin && (
 
-                    <div className="flex items-center justify-center md:justify-start">
+                    <div className="flex items-center justify-center md:justify-start sm:ml-4">
                         <button
                             onClick={handleModalTarea}
                             type='button'

@@ -27,7 +27,7 @@ export const FormularioProyecto = () => {
 
             // console.log(proyecto.fechaEntrega);
         }else{
-            console.log('Nuevo proyecto')
+            // console.log('Nuevo proyecto')
         }
     }, [params])
 

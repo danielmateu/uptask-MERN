@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
-
-
+import useProyectos from "../hooks/useProyectos"
+import Buscador from './Buscador'
 
 export const Header = () => {
+
+    const {handleBuscador} = useProyectos()
 
     return (
         <header className="px-4 py-6 bg-white border-b md:flex md:justify-between">
@@ -14,6 +16,7 @@ export const Header = () => {
             <div className="flex items-center justify-center mt-6 md:mt-0">
 
                 <button
+                    onClick={handleBuscador}
                     type="button"
                     className=" rounded-lg p-2 border bg-slate-200 hover:bg-slate-300 transition-colors"
                 >Buscar proyecto</button>
@@ -32,6 +35,8 @@ export const Header = () => {
                 >
                     Cerrar Sesión
                 </button>
+
+            <Buscador/>
             </div>
 
 
