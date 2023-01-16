@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
 import useProyectos from '../hooks/useProyectos'
-import { Link, useNavigate } from 'react-router-dom'
+// import { Link, useNavigate } from 'react-router-dom'
 
 
 
@@ -16,7 +16,7 @@ const Busqueda = () => {
 
     const proyectosFiltrados = busqueda === '' ? [] : proyectos.filter(proyecto => proyecto.nombre.toLowerCase().includes(busqueda.toLowerCase()));
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     return (
         <Transition.Root show={buscador} as={Fragment} afterLeave={() => setBusqueda('')}>

@@ -26,10 +26,10 @@ export const NuevoColaborador = () => {
             </div>
 
             {cargando ? <p className="text-center">cargando...</p> : colaborador?._id && (
-                <div className="flex justify-center mt-8">
-                    <div className="bg-white p-8 flex flex-col w-8/12  rounded shadow-lg hover:shadow-sm transition-all">
-                        <h2 className="text-center mb-8 text-2xl font-semibold">Resultado: </h2>
-                        <div className="flex justify-between items-center">
+                <div className="flex justify-center mt-6">
+                    <div className="bg-white p-6 flex flex-col w-full m-4  rounded shadow-lg hover:shadow-sm transition-all">
+                        <h2 className="text-center text-2xl font-semibold flex flex-wrap">Resultado: </h2>
+                        <div className="flex flex-col sm:flex-row justify-between items-center">
                             <p className="">{colaborador.nombre}</p>
 
                             <button 

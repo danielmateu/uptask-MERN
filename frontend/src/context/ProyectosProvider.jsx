@@ -3,6 +3,7 @@ import { createContext, useState, useEffect } from 'react'
 import clienteAxios from '../config/clienteAxios';
 import { useNavigate } from 'react-router-dom'
 import io from 'socket.io-client';
+import useAuth from '../hooks/useAuth';
 
 
 let socket;
@@ -22,7 +23,10 @@ const ProyectosProvider = ({ children }) => {
     const [modalEliminarColaborador, setModalEliminarColaborador] = useState(false)
     const [buscador, setBuscador] = useState(false)
 
+    const {auth} = useAuth()
+
     useEffect(() => {
+
         const obtenerProyectos = async () => {
             try {
                 const token = localStorage.getItem('token');
@@ -45,7 +49,7 @@ const ProyectosProvider = ({ children }) => {
         }
 
         obtenerProyectos()
-    }, [])
+    }, [auth])
 
     useEffect(() => {
         socket = io(import.meta.env.VITE_BACKEND_URL)
@@ -150,6 +154,7 @@ const ProyectosProvider = ({ children }) => {
     }
 
     const obtenerProyecto = async id => {
+
         setCargando(true)
         try {
             const token = localStorage.getItem('token');
@@ -377,6 +382,7 @@ const ProyectosProvider = ({ children }) => {
     }
 
     const agregarColaborador = async (email) => {
+
         try {
             // console.log(email);
             const token = localStorage.getItem('token');
@@ -459,6 +465,7 @@ const ProyectosProvider = ({ children }) => {
     }
 
     const completarTarea = async id => {
+
         try {
             const token = localStorage.getItem('token');
             if (!token) {
@@ -486,7 +493,9 @@ const ProyectosProvider = ({ children }) => {
     }
 
     const handleBuscador = () => {
+
         setBuscador(!buscador);
+        
     }
     //Socket IO
     const submitTareasProyecto = (tarea) => {

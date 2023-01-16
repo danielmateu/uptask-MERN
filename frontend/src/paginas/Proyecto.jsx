@@ -65,8 +65,8 @@ const Proyecto = () => {
     return (
         msg && alerta.error ? <Alerta alerta={alerta} /> : (
             <>
-                <div className="mt-6 flex justify-between hover">
-                    <h1 className="font-semibold text-4xl  p-4">{nombre}</h1>
+                <div className="flex flex-col items-center sm:flex-row md:justify-between">
+                    <h1 className="font-semibold text-2xl sm:text-4xl  p-4">{nombre}</h1>
 
                     {admin && (
 
