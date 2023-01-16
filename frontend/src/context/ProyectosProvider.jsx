@@ -273,7 +273,7 @@ const ProyectosProvider = ({ children }) => {
 
                 const { data } = await clienteAxios.put(`/tareas/${tarea.id}`, tarea, config)
 
-                //TODO Actualizar el DOM
+                // Actualizar el DOM
                 const proyectoActualizado = { ...proyecto }
                 proyectoActualizado.tareas = proyectoActualizado.tareas.map(tareaState => tareaState._id === data._id ? data : tareaState)
                 setProyecto(proyectoActualizado)
@@ -328,17 +328,16 @@ const ProyectosProvider = ({ children }) => {
                 error: false
             })
 
-            //TODO Actualizar el DOM
-            const proyectoActualizado = { ...proyecto }
-            proyectoActualizado.tareas = proyectoActualizado.tareas.filter(tareaState => tareaState._id !== tarea._id)
-
-            setProyecto(proyectoActualizado)
+            
 
             setModalEliminarTarea(false)
-            setTarea({})
             setTimeout(() => {
                 setAlerta({})
             }, 3000);
+            
+            //SOCKET
+            socket.emit('eliminar tarea', tarea)
+            setTarea({})
 
         } catch (error) {
             console.log(error);
@@ -395,7 +394,6 @@ const ProyectosProvider = ({ children }) => {
             }
 
             const { data } = await clienteAxios.post(`/proyectos/colaboradores/${proyecto._id}`, email, config);
-            // console.log(data);
             setAlerta({
                 msg: data.msg,
                 error: false
@@ -479,9 +477,7 @@ const ProyectosProvider = ({ children }) => {
             const { data } = await clienteAxios.post(`/tareas/estado/${id}`, {}, config);
             // console.log(data)
             const proyectoActualizado = { ...proyecto }
-
             proyectoActualizado.tareas = proyectoActualizado.tareas.map(tareaState => tareaState._id === data._id ? data : tareaState)
-
             setProyecto(proyectoActualizado)
             setTarea({})
             setAlerta({})
@@ -501,6 +497,14 @@ const ProyectosProvider = ({ children }) => {
         proyectoActualizado.tareas = [...proyectoActualizado.tareas, tarea]
 
         setProyecto(proyectoActualizado);
+    }
+
+    const eliminarTareaProyecto = (tarea) => {
+        //TODO Actualizar el DOM
+        const proyectoActualizado = { ...proyecto }
+        proyectoActualizado.tareas = proyectoActualizado.tareas.filter(tareaState => tareaState._id !== tarea._id)
+
+        setProyecto(proyectoActualizado)
     }
 
     return (
@@ -532,7 +536,8 @@ const ProyectosProvider = ({ children }) => {
                 completarTarea,
                 handleBuscador,
                 buscador,
-                submitTareasProyecto
+                submitTareasProyecto,
+                eliminarTareaProyecto
             }}
         >
             {children}
