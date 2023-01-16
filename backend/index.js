@@ -62,5 +62,8 @@ io.on('connection', (socket) => {
     console.log('Conectado a socket.io');
 
     //Definir los eventos de socket io
-    
+    // socket.on('prueba', (proyectos) => {
+    //     console.log('Prueba desde socket.io', proyectos)
+    //     socket.emit('respuesta', {nombre: 'Dani'})
+    // })
 })
