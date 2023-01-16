@@ -7,7 +7,6 @@ import usuarioRoutes from './routes/usuarioRoutes.js';
 import proyectoRoutes from './routes/proyectoRoutes.js';
 import tareaRoutes from './routes/tareaRoutes.js';
 
-
 const app = express();
 app.use(express.json())
 
@@ -15,19 +14,19 @@ dotenv.config();
 
 conectarDB();
 
-//COnfigurar CORS
+//Configurar CORS
 const whitelist = [
-    process.env.FRONTEND_URL, 
+    process.env.FRONTEND_URL,
     // 'http://localhost:3000'
 ]
 
 const corsOptions = {
-    origin: function(origin, callback){
-        if(whitelist.includes(origin)){
+    origin: function (origin, callback) {
+        if (whitelist.includes(origin)) {
             // console.log(origin);
             //Puede consultar la api
-            callback(null,true);
-        }else{
+            callback(null, true);
+        } else {
             //No está permitido
             callback(new Error('Cors origin Error'))
         }
@@ -43,6 +42,25 @@ app.use('/api/tareas', tareaRoutes)
 
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => {
+const servidor = app.listen(PORT, () => {
     console.log(`Servidor corriendo en puerto ${PORT}`)
+})
+
+//Socket.io
+import { Server } from "socket.io";
+
+const io = new Server(servidor, {
+    // options
+    pingTimeout: 60000,
+    cors: {
+        origin: process.env.FRONTEND_URL,
+
+    }
+});
+
+io.on('connection', (socket) => {
+    console.log('Conectado a socket.io');
+
+    //Definir los eventos de socket io
+    
 })

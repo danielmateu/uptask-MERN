@@ -1,6 +1,10 @@
 import { Alerta } from "../components";
 import { PreviewProyecto } from "../components/PreviewProyecto";
 import useProyectos from "../hooks/useProyectos";
+import { io } from "socket.io-client";
+import { useEffect } from "react";
+
+let socket;
 
 
 
@@ -8,6 +12,11 @@ export const Proyectos = () => {
 
     const {proyectos, alerta} = useProyectos();
     const {msg} = alerta;
+
+    useEffect(() => {
+        socket = io(import.meta.env.VITE_BACKEND_URL)
+    }, [])
+    
     // console.log(proyectos);
     return (
         <>
