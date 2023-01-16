@@ -7,7 +7,7 @@ export const Sidebar = () => {
     const {auth} = useAuth();
 
     return (
-        <aside className="md:w-80 lg:w-96 px-5 py-">
+        <aside className="md:w-1/3 lg:w-1/5 xl:w:1/6 px-5 py-8">
             <p className="text-xl font-semibold mt-8">Hola: {auth.nombre}</p>
 
             <Link

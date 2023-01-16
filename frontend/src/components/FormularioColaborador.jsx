@@ -30,7 +30,7 @@ export const FormularioColaborador = () => {
 
     return (
         <form
-            className="bg-white py-10 px-4 mr-6 shadow-lg hover:shadow-none transition-all rounded-lg"
+            className="bg-white py-10 px-4 m-4 shadow-lg hover:shadow-none transition-all rounded-lg"
             onSubmit={handleSubmit}
         >
             <div className="mb-5">

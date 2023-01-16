@@ -9,7 +9,7 @@ export const PreviewProyecto = ({ proyecto }) => {
     const { nombre, _id, cliente, creador } = proyecto
 
     return (
-        <div className="border p-5 flex m-5 hover:bg-slate-200 transition-colors rounded-xl justify-between ">
+        <div className="border p-5 flex flex-col md:flex-row m-5 hover:bg-slate-200 transition-colors rounded-xl justify-between ">
             <div className="flex items-center gap-2 justify">
                 <p className="flex-1">{nombre} <span className="text-sm text-gray-400">{cliente}</span></p>
 

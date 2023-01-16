@@ -12,13 +12,10 @@ import { Tarea, Alerta, Colaborador, ModalFormularioTarea, ModalEliminarTarea, M
 
 const Proyecto = () => {
 
-    // const [modal, setModal] = useState(false)
+    
     const params = useParams()
-    // console.log(params);
     const { obtenerProyecto, proyecto, cargando, handleModalTarea, alerta } = useProyectos()
-
     const admin = useAdmin();
-    // console.log(admin)
 
     useEffect(() => {
         obtenerProyecto(params.id)
@@ -26,7 +23,7 @@ const Proyecto = () => {
 
     const { nombre } = proyecto;
 
-    // console.log(proyecto)
+    console.log(proyecto)
 
     if (cargando) return 'Cargando...'
 

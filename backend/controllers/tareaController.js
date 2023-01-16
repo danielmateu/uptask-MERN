@@ -114,8 +114,14 @@ const eliminarTarea = async (req, res, next) => {
 }
 
 const camiarEstadoTarea = async (req, res) => {
+
     const { id } = req.params;
-    const tarea = await Tarea.findById(id).populate('proyecto');
+
+    const tarea = await Tarea.findById(id)
+    .populate('proyecto')
+    // populate('completado');
+
+    console.log(tarea)
 
 
     if (!tarea) {
@@ -132,8 +138,16 @@ const camiarEstadoTarea = async (req, res) => {
     }
 
     tarea.estado = !tarea.estado;
+    tarea.completado = req.usuario._id;
+
     await tarea.save()
-    res.json(tarea)
+
+    const tareaAlmacenada = await Tarea.findById(id)
+    .populate('proyecto')
+    .populate('completado');
+
+    // console.log(tarea)
+    res.json(tareaAlmacenada)
 
     // console.log(!tarea.estado)
 

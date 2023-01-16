@@ -13,19 +13,15 @@ export const NuevoColaborador = () => {
         obtenerProyecto(params.id)
     }, []);
 
-    // console.log(colaborador);
-
-    // if(cargando) return 'cargando...'
-
     if(!proyecto?._id) return <Alerta alerta={alerta}/>
 
     return (
         <>
-            <h1 className="text-4xl font-semibold my-6">
+            <h1 className="text-xl md:text-4xl md:mt-2 font-semibold mx-6">
                 Añadir Colaborador(a) al proyecto: {proyecto.nombre}
             </h1>
 
-            <div className="mt-10 justify-center">
+            <div className="mt-6 justify-center">
                 <FormularioColaborador />
             </div>
 
